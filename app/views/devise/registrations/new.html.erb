@@ -1,7 +1,10 @@
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
     <div class="bg-white px-6 py-12 border-1 border-gray-300 sm:rounded-lg sm:px-12">
-      <h2 class="mb-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Bienvenue sur Airbnb</h2>
+      <div class="flex justify-center items-center mb-10">
+        <%= render "shared/logo", locals: {class:"w-full justify-center mx-auto"} %>
+      </div>
+      <h2 class="mb-6 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900">Bienvenue, connecte-toi à ton compte</h2>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
           <div>
             <%= f.label :Email, class:"block text-sm font-medium leading-6 text-gray-900" %>

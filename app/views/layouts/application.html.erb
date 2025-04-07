@@ -17,7 +17,10 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <%= render "shared/navbar" %>
+    <% if controller_name != "registrations" && controller_name != "sessions" %>
+      <%= render "shared/navbar" %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

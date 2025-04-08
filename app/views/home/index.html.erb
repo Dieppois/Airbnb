@@ -6,8 +6,15 @@
       <% @properties.each do |property| %>
         <div class="group relative">
 
-          <div class="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
-            <%= image_tag property.images.first, class:"h-full w-full object-cover object-center lg:h-full lg:w-full", alt:"#{property.name}" %>
+          <div class="swiper aspect-square w-full overflow-hidden rounded-md bg-gray-200">
+            <div class="swiper-wrapper">
+              <% property.images.each do |image| %>
+                <%= image_tag image, class:"swiper-slide h-full w-full object-cover object-center lg:h-full lg:w-full", alt:"#{property.name}" %>
+              <% end %>
+            </div>
+
+            <div class="swiper-button-prev fill-white"></div>
+            <div class="swiper-button-next"></div>
           </div>
 
           <div class="mt-2 flex justify-between">

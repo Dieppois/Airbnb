@@ -3,18 +3,18 @@
 
     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10 xl:gap-x-8">
 
-      <% 12.times do %>
+      <% @properties.each do |property| %>
         <div class="group relative">
 
           <div class="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
-            <img src="https://a0.muscache.com/im/pictures/47b0c910-61c5-4577-9149-999ad14ae6d7.jpg?im_w=1200" alt="Property 1" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            <%= image_tag property.images.first, class:"h-full w-full object-cover object-center lg:h-full lg:w-full", alt:"#{property.name}" %>
           </div>
 
           <div class="mt-2 flex justify-between">
             <h3 class="text-base text-gray-900">
               <a href="#" class="font-medium">
                 <span aria-hidden="true" class="absolute inset-0"></span>
-                Bérat, France
+                <%= property.city %>,<%= property.country %>
               </a>
             </h3>
             <span class="flex items-center gap-2">
@@ -25,7 +25,10 @@
 
             <p class="text-sm text-gray-500">Particulier exerçant l'activité d'hôte</p>
             <p class="text-sm text-gray-500">8-13 mai</p>
-            <p class="text-base text-gray-900"><span class="font-medium">76 € </span>par nuit</p>
+            <p class="text-base text-gray-900">
+              <span class="font-medium"><%= humanized_money_with_symbol(property.price) %></span>
+              par nuit
+            </p>
         </div>
       <% end %>
 

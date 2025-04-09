@@ -5,8 +5,9 @@
 
       <% @properties.each do |property| %>
         <div class="group relative">
-          <div class="overflow-hidden rounded-md bg-gray-200">
+          <div class="overflow-hidden rounded-4xl bg-gray-200">
 
+            <!-- Slider des properties -->
             <div class="swiper">
               <div class="swiper-wrapper">
                 <% property.images.each do |image| %>
@@ -14,11 +15,13 @@
                 <% end %>
               </div>
 
+              <!-- Btn de navigation -->
               <div class="swiper-button-prev fill-white"></div>
               <div class="swiper-button-next"></div>
 
             </div>
 
+            <!-- Wishlist btn -->
             <div class="absolute top-6 right-6 z-10">
               <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -26,8 +29,12 @@
               role="presentation"
               data-controller="wishlist"
               data-action="click->wishlist#updateWishlistStatus"
-              data-status="false"
-              class="block h-6 w-6 stroke-white stroke-2 fill-none"
+              data-status="<%= property.wishlisted_by?(current_user) %>"
+              data-user-logged-in="<%= user_signed_in? %>"
+              data-property-id="<%= property.id %>"
+              data-user-id="<%= current_user&.id %>"
+              data-wishlist-id="<%= property.wishlists.find_by(user: current_user)&.id %>"
+              class="block h-7 w-7 stroke-white stroke-2 duration-200 ease-in-out scale-100 hover:scale-110 <%= property.wishlisted_by?(current_user) ? "fill-primary" : "wishlist-fill-none" %>"
               focusable="false"
               style="overflow: visible;"
               >
@@ -37,6 +44,7 @@
 
           </div>
 
+            <!-- Property text -->
           <div class="mt-2 flex justify-between">
             <h3 class="text-base text-gray-900">
               <a href="#" class="font-medium">
@@ -52,7 +60,7 @@
 
             <p class="text-sm text-gray-500">Particulier exerçant l'activité d'hôte</p>
             <p class="text-sm text-gray-500">8-13 mai</p>
-            <p class="text-base text-gray-900">
+            <p class="text-base text-gray-900 mt-2">
               <span class="font-medium"><%= humanized_money_with_symbol(property.price) %></span>
               par nuit
             </p>
